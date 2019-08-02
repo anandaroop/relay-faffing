@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 067b59b774935e57fc9660c3719c6662
+ * @relayHash 554968ace46467f42f517cb980bb50f3
  */
 
 /* eslint-disable */
@@ -9,10 +9,10 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type AppGeneQueryVariables = {|
+export type GeneQueryVariables = {|
   slug: string
 |};
-export type AppGeneQueryResponse = {|
+export type GeneQueryResponse = {|
   +gene: ?{|
     +slug: string,
     +name: ?string,
@@ -20,15 +20,15 @@ export type AppGeneQueryResponse = {|
     +description: ?string,
   |}
 |};
-export type AppGeneQuery = {|
-  variables: AppGeneQueryVariables,
-  response: AppGeneQueryResponse,
+export type GeneQuery = {|
+  variables: GeneQueryVariables,
+  response: GeneQueryResponse,
 |};
 */
 
 
 /*
-query AppGeneQuery(
+query GeneQuery(
   $slug: String!
 ) {
   gene(id: $slug) {
@@ -89,7 +89,7 @@ return {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
-    "name": "AppGeneQuery",
+    "name": "GeneQuery",
     "type": "Query",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
@@ -113,7 +113,7 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "AppGeneQuery",
+    "name": "GeneQuery",
     "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
@@ -142,13 +142,13 @@ return {
   },
   "params": {
     "operationKind": "query",
-    "name": "AppGeneQuery",
+    "name": "GeneQuery",
     "id": null,
-    "text": "query AppGeneQuery(\n  $slug: String!\n) {\n  gene(id: $slug) {\n    slug\n    name\n    isPublished\n    description\n    id\n  }\n}\n",
+    "text": "query GeneQuery(\n  $slug: String!\n) {\n  gene(id: $slug) {\n    slug\n    name\n    isPublished\n    description\n    id\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '3ae346e4eb38729740c183ecf34940c7';
+(node/*: any*/).hash = '31605fa04956aea58360745764ac99cf';
 module.exports = node;
