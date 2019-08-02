@@ -1,11 +1,10 @@
-import React from 'react';
+import React from 'react'
+import styled from 'styled-components'
 
-function App() {
-  return (
-    <div>
-      Hellooo
-    </div>
-  );
+export default function App() {
+  return <Main>Hellooo</Main>
 }
 
-export default App;
+const Main = styled.main`
+  padding: 1em;
+`
