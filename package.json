@@ -15,7 +15,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "relay": "relay-compiler --src ./src --schema ./schema.graphql"
+    "relay": "relay-compiler --src ./src --schema ./schema.graphql",
+    "schema": "yarn run fetchV2schema",
+    "fetchV2schema": "curl -o schema.graphql https://raw.githubusercontent.com/artsy/metaphysics/master/_schemaV2.graphql"
   },
   "eslintConfig": {
     "extends": "react-app"
