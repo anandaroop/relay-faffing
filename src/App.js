@@ -4,6 +4,7 @@ import { Box, Serif, Sans } from '@artsy/palette'
 import { QueryRenderer } from 'react-relay'
 import environment from './relay-environment'
 import graphql from 'babel-plugin-relay/macro'
+import ReactMarkdown from 'react-markdown'
 
 export default class App extends React.Component {
   render() {
@@ -39,14 +40,16 @@ export default class App extends React.Component {
 
 const Gene = ({ gene }) => (
   <Box mx="auto" my={4} width={0.5}>
-    <Serif size="5t" my={2}>
+    <Sans size="8" my={2}>
       {gene.isPublished ? (
         <a href={`https://www.artsy.net/gene/${gene.slug}`}>{gene.name}</a>
       ) : (
         gene.name
       )}
+    </Sans>
+    <Serif size="3">
+      <ReactMarkdown source={gene.description} />
     </Serif>
-    <Sans size="3">{gene.description}</Sans>
   </Box>
 )
 
