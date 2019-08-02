@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 6dd2fdd0aa590b08cb8fe8d1a08fd896
+ * @relayHash 067b59b774935e57fc9660c3719c6662
  */
 
 /* eslint-disable */
@@ -9,7 +9,9 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type AppGeneQueryVariables = {||};
+export type AppGeneQueryVariables = {|
+  slug: string
+|};
 export type AppGeneQueryResponse = {|
   +gene: ?{|
     +slug: string,
@@ -26,8 +28,10 @@ export type AppGeneQuery = {|
 
 
 /*
-query AppGeneQuery {
-  gene(id: "old-master-influenced-fantasy") {
+query AppGeneQuery(
+  $slug: String!
+) {
+  gene(id: $slug) {
     slug
     name
     isPublished
@@ -40,33 +44,41 @@ query AppGeneQuery {
 const node/*: ConcreteRequest*/ = (function(){
 var v0 = [
   {
-    "kind": "Literal",
-    "name": "id",
-    "value": "old-master-influenced-fantasy"
+    "kind": "LocalArgument",
+    "name": "slug",
+    "type": "String!",
+    "defaultValue": null
   }
 ],
-v1 = {
+v1 = [
+  {
+    "kind": "Variable",
+    "name": "id",
+    "variableName": "slug"
+  }
+],
+v2 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "slug",
   "args": null,
   "storageKey": null
 },
-v2 = {
+v3 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "name",
   "args": null,
   "storageKey": null
 },
-v3 = {
+v4 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "isPublished",
   "args": null,
   "storageKey": null
 },
-v4 = {
+v5 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "description",
@@ -80,21 +92,21 @@ return {
     "name": "AppGeneQuery",
     "type": "Query",
     "metadata": null,
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "gene",
-        "storageKey": "gene(id:\"old-master-influenced-fantasy\")",
-        "args": (v0/*: any*/),
+        "storageKey": null,
+        "args": (v1/*: any*/),
         "concreteType": "Gene",
         "plural": false,
         "selections": [
-          (v1/*: any*/),
           (v2/*: any*/),
           (v3/*: any*/),
-          (v4/*: any*/)
+          (v4/*: any*/),
+          (v5/*: any*/)
         ]
       }
     ]
@@ -102,21 +114,21 @@ return {
   "operation": {
     "kind": "Operation",
     "name": "AppGeneQuery",
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "gene",
-        "storageKey": "gene(id:\"old-master-influenced-fantasy\")",
-        "args": (v0/*: any*/),
+        "storageKey": null,
+        "args": (v1/*: any*/),
         "concreteType": "Gene",
         "plural": false,
         "selections": [
-          (v1/*: any*/),
           (v2/*: any*/),
           (v3/*: any*/),
           (v4/*: any*/),
+          (v5/*: any*/),
           {
             "kind": "ScalarField",
             "alias": null,
@@ -132,11 +144,11 @@ return {
     "operationKind": "query",
     "name": "AppGeneQuery",
     "id": null,
-    "text": "query AppGeneQuery {\n  gene(id: \"old-master-influenced-fantasy\") {\n    slug\n    name\n    isPublished\n    description\n    id\n  }\n}\n",
+    "text": "query AppGeneQuery(\n  $slug: String!\n) {\n  gene(id: $slug) {\n    slug\n    name\n    isPublished\n    description\n    id\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '379e234ea5fd7c19e00053e88ddf5a30';
+(node/*: any*/).hash = '3ae346e4eb38729740c183ecf34940c7';
 module.exports = node;

@@ -7,12 +7,14 @@ import graphql from 'babel-plugin-relay/macro'
 
 export default class App extends React.Component {
   render() {
+    const slug =
+      document.location.pathname.substring(1) || 'old-master-influenced-fantasy'
     return (
       <QueryRenderer
         environment={environment}
         query={graphql`
-          query AppGeneQuery {
-            gene(id: "old-master-influenced-fantasy") {
+          query AppGeneQuery($slug: String!) {
+            gene(id: $slug) {
               slug
               name
               isPublished
@@ -20,7 +22,7 @@ export default class App extends React.Component {
             }
           }
         `}
-        variables={{}}
+        variables={{ slug }}
         render={({ error, props }) => {
           if (error) {
             return <div>Error! {JSON.stringify(error)}</div>
