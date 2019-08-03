@@ -13,8 +13,9 @@ const GeneFamilyNavLink = props => {
         hoverColor="purple100"
         noUnderline={true}
         underlineBehavior="none"
+
       >
-        <Sans size={3} weight="medium" my={2}>
+        <Sans size={3} weight="medium" py={2}>
           {props.geneFamily.name}
         </Sans>
       </AllCapsLink>

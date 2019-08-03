@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash dfac77bc2b76b193806130ea500bec72
+ * @relayHash a5711b1d78da302e6abb3442ea9c5001
  */
 
 /* eslint-disable */
@@ -70,6 +70,7 @@ fragment GeneFamily_geneFamily on GeneFamily {
   slug
   name
   genes {
+    name
     ...Gene_gene
     id
   }
@@ -207,8 +208,8 @@ return {
                         "concreteType": "Gene",
                         "plural": true,
                         "selections": [
-                          (v1/*: any*/),
                           (v2/*: any*/),
+                          (v1/*: any*/),
                           (v3/*: any*/)
                         ]
                       }
@@ -276,7 +277,7 @@ return {
     "operationKind": "query",
     "name": "CategoriesAppQuery",
     "id": null,
-    "text": "query CategoriesAppQuery {\n  viewer {\n    ...GeneFamilyNav_viewer\n    ...GeneFamilies_viewer\n  }\n}\n\nfragment GeneFamilyNav_viewer on Viewer {\n  geneFamilies(first: 20) {\n    edges {\n      node {\n        ...GeneFamilyNavLink_geneFamily\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment GeneFamilies_viewer on Viewer {\n  geneFamilies(first: 20) {\n    edges {\n      node {\n        ...GeneFamily_geneFamily\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment GeneFamily_geneFamily on GeneFamily {\n  slug\n  name\n  genes {\n    ...Gene_gene\n    id\n  }\n}\n\nfragment Gene_gene on Gene {\n  slug\n  name\n}\n\nfragment GeneFamilyNavLink_geneFamily on GeneFamily {\n  slug\n  name\n}\n",
+    "text": "query CategoriesAppQuery {\n  viewer {\n    ...GeneFamilyNav_viewer\n    ...GeneFamilies_viewer\n  }\n}\n\nfragment GeneFamilyNav_viewer on Viewer {\n  geneFamilies(first: 20) {\n    edges {\n      node {\n        ...GeneFamilyNavLink_geneFamily\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment GeneFamilies_viewer on Viewer {\n  geneFamilies(first: 20) {\n    edges {\n      node {\n        ...GeneFamily_geneFamily\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment GeneFamily_geneFamily on GeneFamily {\n  slug\n  name\n  genes {\n    name\n    ...Gene_gene\n    id\n  }\n}\n\nfragment Gene_gene on Gene {\n  slug\n  name\n}\n\nfragment GeneFamilyNavLink_geneFamily on GeneFamily {\n  slug\n  name\n}\n",
     "metadata": {}
   }
 };

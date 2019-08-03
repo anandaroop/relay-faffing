@@ -16,7 +16,8 @@ export type GeneFamily_geneFamily = {|
   +slug: string,
   +name: string,
   +genes: ?$ReadOnlyArray<?{|
-    +$fragmentRefs: Gene_gene$ref
+    +name: ?string,
+    +$fragmentRefs: Gene_gene$ref,
   |}>,
   +$refType: GeneFamily_geneFamily$ref,
 |};
@@ -28,7 +29,15 @@ export type GeneFamily_geneFamily$key = {
 */
 
 
-const node/*: ReaderFragment*/ = {
+const node/*: ReaderFragment*/ = (function(){
+var v0 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "name",
+  "args": null,
+  "storageKey": null
+};
+return {
   "kind": "Fragment",
   "name": "GeneFamily_geneFamily",
   "type": "GeneFamily",
@@ -42,13 +51,7 @@ const node/*: ReaderFragment*/ = {
       "args": null,
       "storageKey": null
     },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "name",
-      "args": null,
-      "storageKey": null
-    },
+    (v0/*: any*/),
     {
       "kind": "LinkedField",
       "alias": null,
@@ -58,6 +61,7 @@ const node/*: ReaderFragment*/ = {
       "concreteType": "Gene",
       "plural": true,
       "selections": [
+        (v0/*: any*/),
         {
           "kind": "FragmentSpread",
           "name": "Gene_gene",
@@ -67,6 +71,7 @@ const node/*: ReaderFragment*/ = {
     }
   ]
 };
+})();
 // prettier-ignore
-(node/*: any*/).hash = '8f5096b541df65082b7eb56a9ac5607f';
+(node/*: any*/).hash = 'ead6a8998eb6a213af9ba51045ff8bce';
 module.exports = node;

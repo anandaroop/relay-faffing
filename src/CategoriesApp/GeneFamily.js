@@ -9,13 +9,17 @@ import Gene from './Gene'
 
 const GeneFamily = props => {
   // return <pre>{JSON.stringify(props, null, 2)}</pre>
+  const sortedGenes = [...props.geneFamily.genes].sort(
+    (a, b) =>
+      (a.name || a.displayName).toUpperCase().charCodeAt(0) - (b.name || a.displayName).toUpperCase().charCodeAt(0)
+  )
   return (
     <Box id={props.geneFamily.slug}>
       <Serif element="h2" size={10} mt={5} mb={2}>
         {props.geneFamily.name}
       </Serif>
       <Columns>
-        {props.geneFamily.genes.map(g => (
+        {sortedGenes.map(g => (
           <Gene key={g.__id} gene={g} />
         ))}
       </Columns>
@@ -34,6 +38,7 @@ export default createFragmentContainer(GeneFamily, {
       slug
       name
       genes {
+        name
         ...Gene_gene
       }
     }
