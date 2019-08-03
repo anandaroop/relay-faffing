@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 4df89bcad9090d38e7fb80b76f0e1273
+ * @relayHash f810fcf454bde132e44cedb0e975783e
  */
 
 /* eslint-disable */
@@ -51,12 +51,12 @@ fragment GeneFamily_geneFamily on GeneFamily {
   slug
   name
   genes {
-    ...GeneFamilyGene_gene
+    ...Gene_gene
     id
   }
 }
 
-fragment GeneFamilyGene_gene on Gene {
+fragment Gene_gene on Gene {
   slug
   name
 }
@@ -238,7 +238,7 @@ return {
     "operationKind": "query",
     "name": "CategoriesAppQuery",
     "id": null,
-    "text": "query CategoriesAppQuery {\n  viewer {\n    ...GeneFamilies_viewer\n  }\n}\n\nfragment GeneFamilies_viewer on Viewer {\n  geneFamilies(first: 3) {\n    edges {\n      node {\n        ...GeneFamily_geneFamily\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment GeneFamily_geneFamily on GeneFamily {\n  slug\n  name\n  genes {\n    ...GeneFamilyGene_gene\n    id\n  }\n}\n\nfragment GeneFamilyGene_gene on Gene {\n  slug\n  name\n}\n",
+    "text": "query CategoriesAppQuery {\n  viewer {\n    ...GeneFamilies_viewer\n  }\n}\n\nfragment GeneFamilies_viewer on Viewer {\n  geneFamilies(first: 3) {\n    edges {\n      node {\n        ...GeneFamily_geneFamily\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment GeneFamily_geneFamily on GeneFamily {\n  slug\n  name\n  genes {\n    ...Gene_gene\n    id\n  }\n}\n\nfragment Gene_gene on Gene {\n  slug\n  name\n}\n",
     "metadata": {}
   }
 };
