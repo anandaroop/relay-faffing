@@ -16,10 +16,22 @@ export type GeneFamilies_viewer = {|
   +geneFamilies: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
-        +$fragmentRefs: GeneFamily_geneFamily$ref
+        +name: string,
+        +$fragmentRefs: GeneFamily_geneFamily$ref,
       |}
     |}>
   |},
+  +featuredGenesByFamily: ?$ReadOnlyArray<?{|
+    +familyName: ?string,
+    +genes: ?$ReadOnlyArray<?{|
+      +id?: string,
+      +title?: ?string,
+      +href?: ?string,
+      +image?: ?{|
+        +url: ?string
+      |},
+    |}>,
+  |}>,
   +$refType: GeneFamilies_viewer$ref,
 |};
 export type GeneFamilies_viewer$data = GeneFamilies_viewer;
@@ -78,6 +90,13 @@ const node/*: ReaderFragment*/ = {
                 {
                   "kind": "ScalarField",
                   "alias": null,
+                  "name": "name",
+                  "args": null,
+                  "storageKey": null
+                },
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
                   "name": "__typename",
                   "args": null,
                   "storageKey": null
@@ -124,9 +143,100 @@ const node/*: ReaderFragment*/ = {
           ]
         }
       ]
+    },
+    {
+      "kind": "LinkedField",
+      "alias": "featuredGenesByFamily",
+      "name": "orderedSets",
+      "storageKey": "orderedSets(key:\"browse:gene-category\",size:20)",
+      "args": [
+        {
+          "kind": "Literal",
+          "name": "key",
+          "value": "browse:gene-category"
+        },
+        {
+          "kind": "Literal",
+          "name": "size",
+          "value": 20
+        }
+      ],
+      "concreteType": "OrderedSet",
+      "plural": true,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": "familyName",
+          "name": "name",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "LinkedField",
+          "alias": "genes",
+          "name": "items",
+          "storageKey": null,
+          "args": null,
+          "concreteType": null,
+          "plural": true,
+          "selections": [
+            {
+              "kind": "InlineFragment",
+              "type": "FeaturedLink",
+              "selections": [
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
+                  "name": "id",
+                  "args": null,
+                  "storageKey": null
+                },
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
+                  "name": "title",
+                  "args": null,
+                  "storageKey": null
+                },
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
+                  "name": "href",
+                  "args": null,
+                  "storageKey": null
+                },
+                {
+                  "kind": "LinkedField",
+                  "alias": null,
+                  "name": "image",
+                  "storageKey": null,
+                  "args": null,
+                  "concreteType": "Image",
+                  "plural": false,
+                  "selections": [
+                    {
+                      "kind": "ScalarField",
+                      "alias": null,
+                      "name": "url",
+                      "args": [
+                        {
+                          "kind": "Literal",
+                          "name": "version",
+                          "value": "large_rectangle"
+                        }
+                      ],
+                      "storageKey": "url(version:\"large_rectangle\")"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '286a35816b37bdee3d45af3362c20c12';
+(node/*: any*/).hash = '4a2ff27e091354f50b4c52faba2fe93e';
 module.exports = node;

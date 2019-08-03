@@ -8,9 +8,12 @@ const GeneFamilies = props => {
   // return <pre>{JSON.stringify(props, null, 2)}</pre>
   return (
     <>
-      {props.viewer.geneFamilies.edges.map(({ node }) => (
-        <GeneFamily key={node.__id} geneFamily={node} />
-      ))}
+      {props.viewer.geneFamilies.edges.map(({ node }) => {
+        const featuredGenes = props.viewer.featuredGenesByFamily.find(
+          f => f.familyName === node.name
+        ).genes
+        return <GeneFamily key={node.__id} geneFamily={node} featuredGenes={featuredGenes}/>
+      })}
     </>
   )
 }
@@ -22,7 +25,25 @@ export default createFragmentContainer(GeneFamilies, {
         @connection(key: "GeneFamilies_geneFamilies", filters: []) {
         edges {
           node {
+            name
             ...GeneFamily_geneFamily
+          }
+        }
+      }
+
+      featuredGenesByFamily: orderedSets(
+        key: "browse:gene-category"
+        size: 20
+      ) {
+        familyName: name
+        genes: items {
+          ... on FeaturedLink {
+            id
+            title
+            href
+            image {
+              url(version: "large_rectangle")
+            }
           }
         }
       }

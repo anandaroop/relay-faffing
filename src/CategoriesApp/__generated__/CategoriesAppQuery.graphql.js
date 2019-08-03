@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash a5711b1d78da302e6abb3442ea9c5001
+ * @relayHash 0498e609b56ca1cd7ee14ea32f02ea37
  */
 
 /* eslint-disable */
@@ -53,6 +53,7 @@ fragment GeneFamilies_viewer on Viewer {
   geneFamilies(first: 20) {
     edges {
       node {
+        name
         ...GeneFamily_geneFamily
         id
         __typename
@@ -63,6 +64,24 @@ fragment GeneFamilies_viewer on Viewer {
       endCursor
       hasNextPage
     }
+  }
+  featuredGenesByFamily: orderedSets(key: "browse:gene-category", size: 20) {
+    familyName: name
+    genes: items {
+      __typename
+      ... on FeaturedLink {
+        id
+        title
+        href
+        image {
+          url(version: "large_rectangle")
+        }
+      }
+      ... on Node {
+        id
+      }
+    }
+    id
   }
 }
 
@@ -113,6 +132,13 @@ v3 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v4 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "__typename",
   "args": null,
   "storageKey": null
 };
@@ -192,13 +218,7 @@ return {
                       (v1/*: any*/),
                       (v2/*: any*/),
                       (v3/*: any*/),
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "__typename",
-                        "args": null,
-                        "storageKey": null
-                      },
+                      (v4/*: any*/),
                       {
                         "kind": "LinkedField",
                         "alias": null,
@@ -268,6 +288,93 @@ return {
             "handle": "connection",
             "key": "GeneFamilies_geneFamilies",
             "filters": []
+          },
+          {
+            "kind": "LinkedField",
+            "alias": "featuredGenesByFamily",
+            "name": "orderedSets",
+            "storageKey": "orderedSets(key:\"browse:gene-category\",size:20)",
+            "args": [
+              {
+                "kind": "Literal",
+                "name": "key",
+                "value": "browse:gene-category"
+              },
+              {
+                "kind": "Literal",
+                "name": "size",
+                "value": 20
+              }
+            ],
+            "concreteType": "OrderedSet",
+            "plural": true,
+            "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": "familyName",
+                "name": "name",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "LinkedField",
+                "alias": "genes",
+                "name": "items",
+                "storageKey": null,
+                "args": null,
+                "concreteType": null,
+                "plural": true,
+                "selections": [
+                  (v4/*: any*/),
+                  (v3/*: any*/),
+                  {
+                    "kind": "InlineFragment",
+                    "type": "FeaturedLink",
+                    "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "title",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "href",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "name": "image",
+                        "storageKey": null,
+                        "args": null,
+                        "concreteType": "Image",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "name": "url",
+                            "args": [
+                              {
+                                "kind": "Literal",
+                                "name": "version",
+                                "value": "large_rectangle"
+                              }
+                            ],
+                            "storageKey": "url(version:\"large_rectangle\")"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              (v3/*: any*/)
+            ]
           }
         ]
       }
@@ -277,7 +384,7 @@ return {
     "operationKind": "query",
     "name": "CategoriesAppQuery",
     "id": null,
-    "text": "query CategoriesAppQuery {\n  viewer {\n    ...GeneFamilyNav_viewer\n    ...GeneFamilies_viewer\n  }\n}\n\nfragment GeneFamilyNav_viewer on Viewer {\n  geneFamilies(first: 20) {\n    edges {\n      node {\n        ...GeneFamilyNavLink_geneFamily\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment GeneFamilies_viewer on Viewer {\n  geneFamilies(first: 20) {\n    edges {\n      node {\n        ...GeneFamily_geneFamily\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment GeneFamily_geneFamily on GeneFamily {\n  slug\n  name\n  genes {\n    name\n    ...Gene_gene\n    id\n  }\n}\n\nfragment Gene_gene on Gene {\n  slug\n  name\n}\n\nfragment GeneFamilyNavLink_geneFamily on GeneFamily {\n  slug\n  name\n}\n",
+    "text": "query CategoriesAppQuery {\n  viewer {\n    ...GeneFamilyNav_viewer\n    ...GeneFamilies_viewer\n  }\n}\n\nfragment GeneFamilyNav_viewer on Viewer {\n  geneFamilies(first: 20) {\n    edges {\n      node {\n        ...GeneFamilyNavLink_geneFamily\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment GeneFamilies_viewer on Viewer {\n  geneFamilies(first: 20) {\n    edges {\n      node {\n        name\n        ...GeneFamily_geneFamily\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  featuredGenesByFamily: orderedSets(key: \"browse:gene-category\", size: 20) {\n    familyName: name\n    genes: items {\n      __typename\n      ... on FeaturedLink {\n        id\n        title\n        href\n        image {\n          url(version: \"large_rectangle\")\n        }\n      }\n      ... on Node {\n        id\n      }\n    }\n    id\n  }\n}\n\nfragment GeneFamily_geneFamily on GeneFamily {\n  slug\n  name\n  genes {\n    name\n    ...Gene_gene\n    id\n  }\n}\n\nfragment Gene_gene on Gene {\n  slug\n  name\n}\n\nfragment GeneFamilyNavLink_geneFamily on GeneFamily {\n  slug\n  name\n}\n",
     "metadata": {}
   }
 };
