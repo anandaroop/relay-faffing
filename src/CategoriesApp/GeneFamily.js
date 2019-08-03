@@ -23,7 +23,7 @@ const GeneFamily = props => {
       </Serif>
       <Columns mt={4}>
         {featuredGenes.map(g => (
-          <FeaturedGene gene={g} />
+          <FeaturedGene key={g.id} gene={g} />
         ))}
       </Columns>
       <Columns mt={4}>

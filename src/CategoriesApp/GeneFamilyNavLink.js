@@ -12,6 +12,11 @@ const GeneFamilyNavLink = props => {
         hoverColor="purple100"
         noUnderline={true}
         underlineBehavior="none"
+        onClick={e => {
+          e.preventDefault()
+          const id = e.target.parentNode.href.split('#')[1]
+          document.getElementById(id).scrollIntoView({ behavior: 'smooth' })
+        }}
       >
         <Sans size={3} weight="medium" py={1}>
           {props.geneFamily.name}
