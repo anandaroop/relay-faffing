@@ -25,7 +25,7 @@ const CategoriesApp = props => (
     m="auto"
   >
     <Flex justifyContent="space-between">
-      <Box width={[0, 0, 0, 0.33]} display={['none', 'none', 'none', 'block']} pr={3}>
+      <Box width={[0, 0, 0, 0.33]} display={['none', 'none', 'none', 'block']} pr={3} mt={"100px"}>
         <GeneFamilyNav viewer={props.viewer} />
       </Box>
       <Box width={[1, 1, 1, 0.67]} pl={3}>
