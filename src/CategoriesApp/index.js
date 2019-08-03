@@ -1,18 +1,18 @@
 import React from 'react'
 import { QueryRenderer } from 'react-relay'
-import environment from './relay-environment'
+import environment from '../relay-environment'
 import graphql from 'babel-plugin-relay/macro'
 
 import GeneFamilies from './GeneFamilies'
 
-export default class App extends React.Component {
+export default class CategoriesApp extends React.Component {
   render() {
     return (
       <>
         <QueryRenderer
           environment={environment}
           query={graphql`
-            query AppQuery {
+            query CategoriesAppQuery {
               viewer {
                 ...GeneFamilies_viewer
               }

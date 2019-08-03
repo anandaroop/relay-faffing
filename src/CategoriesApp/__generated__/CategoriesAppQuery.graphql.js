@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 4210d5f21c44f15de07d73501b82bd20
+ * @relayHash 4df89bcad9090d38e7fb80b76f0e1273
  */
 
 /* eslint-disable */
@@ -10,21 +10,21 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type GeneFamilies_viewer$ref = any;
-export type AppQueryVariables = {||};
-export type AppQueryResponse = {|
+export type CategoriesAppQueryVariables = {||};
+export type CategoriesAppQueryResponse = {|
   +viewer: ?{|
     +$fragmentRefs: GeneFamilies_viewer$ref
   |}
 |};
-export type AppQuery = {|
-  variables: AppQueryVariables,
-  response: AppQueryResponse,
+export type CategoriesAppQuery = {|
+  variables: CategoriesAppQueryVariables,
+  response: CategoriesAppQueryResponse,
 |};
 */
 
 
 /*
-query AppQuery {
+query CategoriesAppQuery {
   viewer {
     ...GeneFamilies_viewer
   }
@@ -95,7 +95,7 @@ return {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
-    "name": "AppQuery",
+    "name": "CategoriesAppQuery",
     "type": "Query",
     "metadata": null,
     "argumentDefinitions": [],
@@ -120,7 +120,7 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "AppQuery",
+    "name": "CategoriesAppQuery",
     "argumentDefinitions": [],
     "selections": [
       {
@@ -236,13 +236,13 @@ return {
   },
   "params": {
     "operationKind": "query",
-    "name": "AppQuery",
+    "name": "CategoriesAppQuery",
     "id": null,
-    "text": "query AppQuery {\n  viewer {\n    ...GeneFamilies_viewer\n  }\n}\n\nfragment GeneFamilies_viewer on Viewer {\n  geneFamilies(first: 3) {\n    edges {\n      node {\n        ...GeneFamily_geneFamily\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment GeneFamily_geneFamily on GeneFamily {\n  slug\n  name\n  genes {\n    ...GeneFamilyGene_gene\n    id\n  }\n}\n\nfragment GeneFamilyGene_gene on Gene {\n  slug\n  name\n}\n",
+    "text": "query CategoriesAppQuery {\n  viewer {\n    ...GeneFamilies_viewer\n  }\n}\n\nfragment GeneFamilies_viewer on Viewer {\n  geneFamilies(first: 3) {\n    edges {\n      node {\n        ...GeneFamily_geneFamily\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment GeneFamily_geneFamily on GeneFamily {\n  slug\n  name\n  genes {\n    ...GeneFamilyGene_gene\n    id\n  }\n}\n\nfragment GeneFamilyGene_gene on Gene {\n  slug\n  name\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '00b5668cf4827aa81772667ec7f497cc';
+(node/*: any*/).hash = 'd3d62c20356658b18f7f3b565be08470';
 module.exports = node;
