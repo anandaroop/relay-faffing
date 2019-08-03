@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 473a831109b0a1ba22bf79fee7e8c293
+ * @relayHash 9d64135cf252a4118bde36cbed98e41a
  */
 
 /* eslint-disable */
@@ -9,13 +9,17 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type ArtworkTombstone_artwork$ref = any;
-export type AppQueryVariables = {|
-  slug: string
-|};
+type GeneFamily_geneFamily$ref = any;
+export type AppQueryVariables = {||};
 export type AppQueryResponse = {|
-  +artwork: ?{|
-    +$fragmentRefs: ArtworkTombstone_artwork$ref
+  +viewer: ?{|
+    +geneFamilies: ?{|
+      +edges: ?$ReadOnlyArray<?{|
+        +node: ?{|
+          +$fragmentRefs: GeneFamily_geneFamily$ref
+        |}
+      |}>
+    |}
   |}
 |};
 export type AppQuery = {|
@@ -26,48 +30,33 @@ export type AppQuery = {|
 
 
 /*
-query AppQuery(
-  $slug: String!
-) {
-  artwork(id: $slug) {
-    ...ArtworkTombstone_artwork
-    id
+query AppQuery {
+  viewer {
+    geneFamilies(first: 3) {
+      edges {
+        node {
+          ...GeneFamily_geneFamily
+          id
+        }
+      }
+    }
   }
 }
 
-fragment ArtworkTombstone_artwork on Artwork {
-  title
-  imageUrl
-  artist {
-    name
-    id
-  }
+fragment GeneFamily_geneFamily on GeneFamily {
+  slug
+  name
 }
 */
 
 const node/*: ConcreteRequest*/ = (function(){
 var v0 = [
   {
-    "kind": "LocalArgument",
-    "name": "slug",
-    "type": "String!",
-    "defaultValue": null
+    "kind": "Literal",
+    "name": "first",
+    "value": 3
   }
-],
-v1 = [
-  {
-    "kind": "Variable",
-    "name": "id",
-    "variableName": "slug"
-  }
-],
-v2 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
-};
+];
 return {
   "kind": "Request",
   "fragment": {
@@ -75,21 +64,54 @@ return {
     "name": "AppQuery",
     "type": "Query",
     "metadata": null,
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": [],
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "artwork",
+        "name": "viewer",
         "storageKey": null,
-        "args": (v1/*: any*/),
-        "concreteType": "Artwork",
+        "args": null,
+        "concreteType": "Viewer",
         "plural": false,
         "selections": [
           {
-            "kind": "FragmentSpread",
-            "name": "ArtworkTombstone_artwork",
-            "args": null
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "geneFamilies",
+            "storageKey": "geneFamilies(first:3)",
+            "args": (v0/*: any*/),
+            "concreteType": "GeneFamilyConnection",
+            "plural": false,
+            "selections": [
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "edges",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "GeneFamilyEdge",
+                "plural": true,
+                "selections": [
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "node",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "GeneFamily",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "kind": "FragmentSpread",
+                        "name": "GeneFamily_geneFamily",
+                        "args": null
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -98,51 +120,71 @@ return {
   "operation": {
     "kind": "Operation",
     "name": "AppQuery",
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": [],
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "artwork",
+        "name": "viewer",
         "storageKey": null,
-        "args": (v1/*: any*/),
-        "concreteType": "Artwork",
+        "args": null,
+        "concreteType": "Viewer",
         "plural": false,
         "selections": [
           {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "title",
-            "args": null,
-            "storageKey": null
-          },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "imageUrl",
-            "args": null,
-            "storageKey": null
-          },
-          {
             "kind": "LinkedField",
             "alias": null,
-            "name": "artist",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "Artist",
+            "name": "geneFamilies",
+            "storageKey": "geneFamilies(first:3)",
+            "args": (v0/*: any*/),
+            "concreteType": "GeneFamilyConnection",
             "plural": false,
             "selections": [
               {
-                "kind": "ScalarField",
+                "kind": "LinkedField",
                 "alias": null,
-                "name": "name",
+                "name": "edges",
+                "storageKey": null,
                 "args": null,
-                "storageKey": null
-              },
-              (v2/*: any*/)
+                "concreteType": "GeneFamilyEdge",
+                "plural": true,
+                "selections": [
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "node",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "GeneFamily",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "slug",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "name",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "id",
+                        "args": null,
+                        "storageKey": null
+                      }
+                    ]
+                  }
+                ]
+              }
             ]
-          },
-          (v2/*: any*/)
+          }
         ]
       }
     ]
@@ -151,11 +193,11 @@ return {
     "operationKind": "query",
     "name": "AppQuery",
     "id": null,
-    "text": "query AppQuery(\n  $slug: String!\n) {\n  artwork(id: $slug) {\n    ...ArtworkTombstone_artwork\n    id\n  }\n}\n\nfragment ArtworkTombstone_artwork on Artwork {\n  title\n  imageUrl\n  artist {\n    name\n    id\n  }\n}\n",
+    "text": "query AppQuery {\n  viewer {\n    geneFamilies(first: 3) {\n      edges {\n        node {\n          ...GeneFamily_geneFamily\n          id\n        }\n      }\n    }\n  }\n}\n\nfragment GeneFamily_geneFamily on GeneFamily {\n  slug\n  name\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'af18d6128f877751daa3dd48fe8a0bef';
+(node/*: any*/).hash = '6986840b4e3ca4f20ee74e7835447418';
 module.exports = node;
