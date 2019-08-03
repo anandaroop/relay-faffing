@@ -1,19 +1,21 @@
 import React from 'react'
 import { createFragmentContainer } from 'react-relay'
 import graphql from 'babel-plugin-relay/macro'
+import { Box, Sans } from '@artsy/palette'
+
 import GeneFamilyGene from './GeneFamilyGene'
 
 const GeneFamily = props => {
   // return <pre>{JSON.stringify(props, null, 2)}</pre>
   return (
-    <div>
-      <h1>{props.geneFamily.name}</h1>
-      <ul>
+    <Box>
+      <Sans size={8} my={2}>{props.geneFamily.name}</Sans>
+      <div>
         {props.geneFamily.genes.map(g => (
           <GeneFamilyGene key={g.__id} gene={g} />
         ))}
-      </ul>
-    </div>
+      </div>
+    </Box>
   )
 }
 
