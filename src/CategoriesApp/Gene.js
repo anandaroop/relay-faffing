@@ -1,12 +1,20 @@
 import React from 'react'
 import { createFragmentContainer } from 'react-relay'
 import graphql from 'babel-plugin-relay/macro'
-import { Box, Serif } from '@artsy/palette'
+import { Box, Link, Serif } from '@artsy/palette'
 
 const Gene = props => {
   return (
-    <Box pl={2}>
-      <Serif size={3}>{props.gene.name}</Serif>
+    <Box my={3}>
+      <Link
+        href={`/gene/${props.gene.slug}`}
+        hoverColor="purple100"
+        noUnderline={true}
+        underlineBehavior="none"
+        mb={1}
+      >
+        <Serif size={5}>{props.gene.name}</Serif>
+      </Link>
     </Box>
   )
 }

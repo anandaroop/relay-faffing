@@ -8,31 +8,31 @@
 
 /*::
 import type { ReaderFragment } from 'relay-runtime';
-type GeneFamily_geneFamily$ref = any;
+type GeneFamilyNavLink_geneFamily$ref = any;
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type GeneFamilies_viewer$ref: FragmentReference;
-declare export opaque type GeneFamilies_viewer$fragmentType: GeneFamilies_viewer$ref;
-export type GeneFamilies_viewer = {|
+declare export opaque type GeneFamilyNav_viewer$ref: FragmentReference;
+declare export opaque type GeneFamilyNav_viewer$fragmentType: GeneFamilyNav_viewer$ref;
+export type GeneFamilyNav_viewer = {|
   +geneFamilies: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
-        +$fragmentRefs: GeneFamily_geneFamily$ref
+        +$fragmentRefs: GeneFamilyNavLink_geneFamily$ref
       |}
     |}>
   |},
-  +$refType: GeneFamilies_viewer$ref,
+  +$refType: GeneFamilyNav_viewer$ref,
 |};
-export type GeneFamilies_viewer$data = GeneFamilies_viewer;
-export type GeneFamilies_viewer$key = {
-  +$data?: GeneFamilies_viewer$data,
-  +$fragmentRefs: GeneFamilies_viewer$ref,
+export type GeneFamilyNav_viewer$data = GeneFamilyNav_viewer;
+export type GeneFamilyNav_viewer$key = {
+  +$data?: GeneFamilyNav_viewer$data,
+  +$fragmentRefs: GeneFamilyNav_viewer$ref,
 };
 */
 
 
 const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
-  "name": "GeneFamilies_viewer",
+  "name": "GeneFamilyNav_viewer",
   "type": "Viewer",
   "metadata": {
     "connection": [
@@ -51,7 +51,7 @@ const node/*: ReaderFragment*/ = {
     {
       "kind": "LinkedField",
       "alias": "geneFamilies",
-      "name": "__GeneFamilies_geneFamilies_connection",
+      "name": "__GeneFamilyNav_geneFamilies_connection",
       "storageKey": null,
       "args": null,
       "concreteType": "GeneFamilyConnection",
@@ -84,7 +84,7 @@ const node/*: ReaderFragment*/ = {
                 },
                 {
                   "kind": "FragmentSpread",
-                  "name": "GeneFamily_geneFamily",
+                  "name": "GeneFamilyNavLink_geneFamily",
                   "args": null
                 }
               ]
@@ -128,5 +128,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '286a35816b37bdee3d45af3362c20c12';
+(node/*: any*/).hash = '2d8c4b6d0254592baeac4b2d6a2aee33';
 module.exports = node;

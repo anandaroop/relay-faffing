@@ -18,7 +18,7 @@ const GeneFamilies = props => {
 export default createFragmentContainer(GeneFamilies, {
   viewer: graphql`
     fragment GeneFamilies_viewer on Viewer {
-      geneFamilies(first: 3)
+      geneFamilies(first: 20)
         @connection(key: "GeneFamilies_geneFamilies", filters: []) {
         edges {
           node {

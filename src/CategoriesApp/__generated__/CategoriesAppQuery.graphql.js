@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash f810fcf454bde132e44cedb0e975783e
+ * @relayHash dfac77bc2b76b193806130ea500bec72
  */
 
 /* eslint-disable */
@@ -10,10 +10,11 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type GeneFamilies_viewer$ref = any;
+type GeneFamilyNav_viewer$ref = any;
 export type CategoriesAppQueryVariables = {||};
 export type CategoriesAppQueryResponse = {|
   +viewer: ?{|
-    +$fragmentRefs: GeneFamilies_viewer$ref
+    +$fragmentRefs: GeneFamilyNav_viewer$ref & GeneFamilies_viewer$ref
   |}
 |};
 export type CategoriesAppQuery = {|
@@ -26,12 +27,30 @@ export type CategoriesAppQuery = {|
 /*
 query CategoriesAppQuery {
   viewer {
+    ...GeneFamilyNav_viewer
     ...GeneFamilies_viewer
   }
 }
 
+fragment GeneFamilyNav_viewer on Viewer {
+  geneFamilies(first: 20) {
+    edges {
+      node {
+        ...GeneFamilyNavLink_geneFamily
+        id
+        __typename
+      }
+      cursor
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}
+
 fragment GeneFamilies_viewer on Viewer {
-  geneFamilies(first: 3) {
+  geneFamilies(first: 20) {
     edges {
       node {
         ...GeneFamily_geneFamily
@@ -60,6 +79,11 @@ fragment Gene_gene on Gene {
   slug
   name
 }
+
+fragment GeneFamilyNavLink_geneFamily on GeneFamily {
+  slug
+  name
+}
 */
 
 const node/*: ConcreteRequest*/ = (function(){
@@ -67,7 +91,7 @@ var v0 = [
   {
     "kind": "Literal",
     "name": "first",
-    "value": 3
+    "value": 20
   }
 ],
 v1 = {
@@ -111,6 +135,11 @@ return {
         "selections": [
           {
             "kind": "FragmentSpread",
+            "name": "GeneFamilyNav_viewer",
+            "args": null
+          },
+          {
+            "kind": "FragmentSpread",
             "name": "GeneFamilies_viewer",
             "args": null
           }
@@ -136,7 +165,7 @@ return {
             "kind": "LinkedField",
             "alias": null,
             "name": "geneFamilies",
-            "storageKey": "geneFamilies(first:3)",
+            "storageKey": "geneFamilies(first:20)",
             "args": (v0/*: any*/),
             "concreteType": "GeneFamilyConnection",
             "plural": false,
@@ -161,6 +190,14 @@ return {
                     "selections": [
                       (v1/*: any*/),
                       (v2/*: any*/),
+                      (v3/*: any*/),
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "__typename",
+                        "args": null,
+                        "storageKey": null
+                      },
                       {
                         "kind": "LinkedField",
                         "alias": null,
@@ -174,14 +211,6 @@ return {
                           (v2/*: any*/),
                           (v3/*: any*/)
                         ]
-                      },
-                      (v3/*: any*/),
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "__typename",
-                        "args": null,
-                        "storageKey": null
                       }
                     ]
                   },
@@ -227,6 +256,15 @@ return {
             "name": "geneFamilies",
             "args": (v0/*: any*/),
             "handle": "connection",
+            "key": "GeneFamilyNav_geneFamilies",
+            "filters": []
+          },
+          {
+            "kind": "LinkedHandle",
+            "alias": null,
+            "name": "geneFamilies",
+            "args": (v0/*: any*/),
+            "handle": "connection",
             "key": "GeneFamilies_geneFamilies",
             "filters": []
           }
@@ -238,11 +276,11 @@ return {
     "operationKind": "query",
     "name": "CategoriesAppQuery",
     "id": null,
-    "text": "query CategoriesAppQuery {\n  viewer {\n    ...GeneFamilies_viewer\n  }\n}\n\nfragment GeneFamilies_viewer on Viewer {\n  geneFamilies(first: 3) {\n    edges {\n      node {\n        ...GeneFamily_geneFamily\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment GeneFamily_geneFamily on GeneFamily {\n  slug\n  name\n  genes {\n    ...Gene_gene\n    id\n  }\n}\n\nfragment Gene_gene on Gene {\n  slug\n  name\n}\n",
+    "text": "query CategoriesAppQuery {\n  viewer {\n    ...GeneFamilyNav_viewer\n    ...GeneFamilies_viewer\n  }\n}\n\nfragment GeneFamilyNav_viewer on Viewer {\n  geneFamilies(first: 20) {\n    edges {\n      node {\n        ...GeneFamilyNavLink_geneFamily\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment GeneFamilies_viewer on Viewer {\n  geneFamilies(first: 20) {\n    edges {\n      node {\n        ...GeneFamily_geneFamily\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment GeneFamily_geneFamily on GeneFamily {\n  slug\n  name\n  genes {\n    ...Gene_gene\n    id\n  }\n}\n\nfragment Gene_gene on Gene {\n  slug\n  name\n}\n\nfragment GeneFamilyNavLink_geneFamily on GeneFamily {\n  slug\n  name\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'd3d62c20356658b18f7f3b565be08470';
+(node/*: any*/).hash = 'dd50c3904597fea052a508c02ea49893';
 module.exports = node;
