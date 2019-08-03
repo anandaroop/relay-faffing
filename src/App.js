@@ -3,30 +3,18 @@ import { QueryRenderer } from 'react-relay'
 import environment from './relay-environment'
 import graphql from 'babel-plugin-relay/macro'
 
-import { GeneContainer as Gene } from './Gene'
-import ArtworkTombstone from './ArtworkTombstone'
-import GeneFamily from './GeneFamily'
-
-const getGeneSlugFromUrl = () =>
-  document.location.pathname.substring(1) || 'old-master-influenced-fantasy'
+import GeneFamilies from './GeneFamilies'
 
 export default class App extends React.Component {
   render() {
     return (
       <>
-        {/* <Gene slug={getGeneSlugFromUrl()} /> */}
         <QueryRenderer
           environment={environment}
           query={graphql`
             query AppQuery {
               viewer {
-                geneFamilies(first: 3) {
-                  edges {
-                    node {
-                      ...GeneFamily_geneFamily
-                    }
-                  }
-                }
+                ...GeneFamilies_viewer
               }
             }
           `}
@@ -40,11 +28,7 @@ export default class App extends React.Component {
             }
             // return <pre>{JSON.stringify(props, null, 2)}</pre>
             return (
-              <>
-                {props.viewer.geneFamilies.edges.map(f => (
-                  <GeneFamily key={f.node.__id} geneFamily={f.node} />
-                ))}
-              </>
+              <GeneFamilies viewer={props.viewer} />
             )
           }}
         />

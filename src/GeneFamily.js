@@ -14,7 +14,6 @@ const GeneFamily = props => {
   )
 }
 
-// export default GeneFamily
 export default createFragmentContainer(GeneFamily, {
   geneFamily: graphql`
   fragment GeneFamily_geneFamily on GeneFamily {
