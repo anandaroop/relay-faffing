@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 001bc47737498d9d460dbd1894336bc2
+ * @relayHash 4210d5f21c44f15de07d73501b82bd20
  */
 
 /* eslint-disable */
@@ -50,6 +50,15 @@ fragment GeneFamilies_viewer on Viewer {
 fragment GeneFamily_geneFamily on GeneFamily {
   slug
   name
+  genes {
+    ...GeneFamilyGene_gene
+    id
+  }
+}
+
+fragment GeneFamilyGene_gene on Gene {
+  slug
+  name
 }
 */
 
@@ -60,7 +69,28 @@ var v0 = [
     "name": "first",
     "value": 3
   }
-];
+],
+v1 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "slug",
+  "args": null,
+  "storageKey": null
+},
+v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "name",
+  "args": null,
+  "storageKey": null
+},
+v3 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+};
 return {
   "kind": "Request",
   "fragment": {
@@ -129,27 +159,23 @@ return {
                     "concreteType": "GeneFamily",
                     "plural": false,
                     "selections": [
+                      (v1/*: any*/),
+                      (v2/*: any*/),
                       {
-                        "kind": "ScalarField",
+                        "kind": "LinkedField",
                         "alias": null,
-                        "name": "slug",
+                        "name": "genes",
+                        "storageKey": null,
                         "args": null,
-                        "storageKey": null
+                        "concreteType": "Gene",
+                        "plural": true,
+                        "selections": [
+                          (v1/*: any*/),
+                          (v2/*: any*/),
+                          (v3/*: any*/)
+                        ]
                       },
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "name",
-                        "args": null,
-                        "storageKey": null
-                      },
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "id",
-                        "args": null,
-                        "storageKey": null
-                      },
+                      (v3/*: any*/),
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -212,7 +238,7 @@ return {
     "operationKind": "query",
     "name": "AppQuery",
     "id": null,
-    "text": "query AppQuery {\n  viewer {\n    ...GeneFamilies_viewer\n  }\n}\n\nfragment GeneFamilies_viewer on Viewer {\n  geneFamilies(first: 3) {\n    edges {\n      node {\n        ...GeneFamily_geneFamily\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment GeneFamily_geneFamily on GeneFamily {\n  slug\n  name\n}\n",
+    "text": "query AppQuery {\n  viewer {\n    ...GeneFamilies_viewer\n  }\n}\n\nfragment GeneFamilies_viewer on Viewer {\n  geneFamilies(first: 3) {\n    edges {\n      node {\n        ...GeneFamily_geneFamily\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment GeneFamily_geneFamily on GeneFamily {\n  slug\n  name\n  genes {\n    ...GeneFamilyGene_gene\n    id\n  }\n}\n\nfragment GeneFamilyGene_gene on Gene {\n  slug\n  name\n}\n",
     "metadata": {}
   }
 };

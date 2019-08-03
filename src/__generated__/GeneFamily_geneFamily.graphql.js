@@ -8,12 +8,16 @@
 
 /*::
 import type { ReaderFragment } from 'relay-runtime';
+type GeneFamilyGene_gene$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type GeneFamily_geneFamily$ref: FragmentReference;
 declare export opaque type GeneFamily_geneFamily$fragmentType: GeneFamily_geneFamily$ref;
 export type GeneFamily_geneFamily = {|
   +slug: string,
   +name: string,
+  +genes: ?$ReadOnlyArray<?{|
+    +$fragmentRefs: GeneFamilyGene_gene$ref
+  |}>,
   +$refType: GeneFamily_geneFamily$ref,
 |};
 export type GeneFamily_geneFamily$data = GeneFamily_geneFamily;
@@ -44,9 +48,25 @@ const node/*: ReaderFragment*/ = {
       "name": "name",
       "args": null,
       "storageKey": null
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "genes",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "Gene",
+      "plural": true,
+      "selections": [
+        {
+          "kind": "FragmentSpread",
+          "name": "GeneFamilyGene_gene",
+          "args": null
+        }
+      ]
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'ba49f3f7cb951817dd1f7356a9e61c52';
+(node/*: any*/).hash = '9cf74517677498b05ed0876bf045da25';
 module.exports = node;
